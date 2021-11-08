@@ -8,6 +8,7 @@ import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
+require('dotenv').config();
 
 export const config: VendureConfig = {
     apiOptions: {
@@ -40,11 +41,11 @@ export const config: VendureConfig = {
         type: 'postgres',
         synchronize: true, // turn this off for production
         logging: false,
-        database: 'mkuuza_cms',
-        host: 'localhost',
-        port: 5432,
-        username: 'mkuuza_user',
-        password: 'hiphoph3avy',
+        database: process.env.DB_NAME,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
     paymentOptions: {
